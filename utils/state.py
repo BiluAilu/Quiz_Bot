@@ -3,8 +3,7 @@ from aiogram.fsm.state import StatesGroup, State
 class UserForm(StatesGroup):
     name = State()
     phone_number = State()
-    role = State()
-    photo = State()
+    photo_id = State()
 
 
 

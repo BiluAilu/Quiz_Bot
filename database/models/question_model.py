@@ -12,6 +12,7 @@ class Question(BaseModel):
     user_id: str
     status: int
     category:str
+    level:str
     date: datetime
 
    

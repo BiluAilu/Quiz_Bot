@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from ..loader import collection
+from ..services.loader import collection
 from datetime import datetime
 
 

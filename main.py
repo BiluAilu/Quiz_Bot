@@ -3,7 +3,10 @@ import asyncio
 from aiogram import Dispatcher
 
 from bot.bot_instance import bot
-from bot.handlers.message_handlers import message_router
+from bot.handlers.message.message_handlers import message_router
+from bot.handlers.message.user_message_handlers import user_router
+from bot.handlers.registration.user_registration_handler import user_registration_router 
+# from bot.handlers.registration.quiz_registration_handler import question_registration_router 
 # from bot.callbacks.callback import callback_router
 
 
@@ -11,6 +14,11 @@ def register_routers(dp: Dispatcher) -> None:
     """Registers routers"""
 
     dp.include_router(message_router)
+    dp.include_router(user_registration_router)
+    dp.include_router(user_router)
+
+
+
 
     # callback routers
     # dp.include_router(callback_router)
