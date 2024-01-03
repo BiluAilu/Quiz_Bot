@@ -1,4 +1,4 @@
-### Telegram Bot Project ###
+# Quiz Bot #
 ## Overview ##
 The Quiz Bot is a Telegram bot designed to provide users with an interactive quiz-taking experience. Users can explore a variety of quizzes based on different categories and difficulty levels, evaluate their knowledge, and challenge themselves to improve their scores. The bot also introduces a collaborative element, allowing users to contribute new quiz questions and share them with the community after approval by administrators.
 
