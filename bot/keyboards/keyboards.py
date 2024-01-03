@@ -48,7 +48,7 @@ def choice_inline_keyboard(choices: List[str]) -> InlineKeyboardMarkup:
     try:
         for choice in choices:
             inlines.append(InlineKeyboardButton(text=choice, callback_data=f"answer_{choice}"))
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[inlines])
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[inlines[0:2],inlines[2:]])
         return keyboard
     except Exception as e:
         print(e)

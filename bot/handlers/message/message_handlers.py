@@ -16,6 +16,7 @@ async def start_handler(message: types.Message):
         existing_user = await get_user_by_id(int(message.chat.id))
         if existing_user:
             await message.answer("Now you are allowed to check the following services",reply_markup=keyboards.after_register_inline_keyboard)
+
             admin=await is_admin(int(message.chat.id))
             if admin:
                 await message.answer("Hello Admin")

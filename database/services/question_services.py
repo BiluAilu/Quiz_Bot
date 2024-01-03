@@ -3,7 +3,17 @@ from ..models.question_model import Question, questions_collection
 
 from typing import List
 async def get_questions(category:str,level:str):
-    questions = questions_collection.find({"category":category,"level":level})
+    # Define your query parameters
+    query_params = {"category":category,"level":level}
+
+    # Perform a query with parameters, random sample, and limit
+    pipeline = [
+        {"$match": query_params},  # Match documents based on your criteria
+        {"$sample": {"size": 5}},  # Adjust the size based on your requirements
+        {"$limit": 5}  # Limit the number of documents to 5
+    ]
+    
+    questions = questions_collection.aggregate(pipeline)
     return [Question(**q) async for q in questions]
 
 
