@@ -18,3 +18,7 @@ class QuestionForm(StatesGroup):
     answer = State()
 
 
+class QuizForm(StatesGroup):
+    WaitingForAnswer = State()
+    QuizComplete = State()
+

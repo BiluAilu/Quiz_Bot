@@ -1,5 +1,6 @@
 
 from aiogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, KeyboardButton, InlineKeyboardButton
+from typing import List
 
 
 register_reply_keyboard = ReplyKeyboardMarkup(
@@ -39,3 +40,15 @@ choice_inline_keyboard = InlineKeyboardMarkup(
         ]
     ]
 )
+
+
+def choice_inline_keyboard(choices: List[str]) -> InlineKeyboardMarkup:
+    # print(choices)
+    inlines=[]
+    try:
+        for choice in choices:
+            inlines.append(InlineKeyboardButton(text=choice, callback_data=f"answer_{choice}"))
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[inlines])
+        return keyboard
+    except Exception as e:
+        print(e)
