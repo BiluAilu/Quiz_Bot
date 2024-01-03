@@ -9,10 +9,12 @@ class UserForm(StatesGroup):
 
 class QuestionForm(StatesGroup):
     title = State()
-    choice1= State()
-    choice2 = State()
-    choice3 = State()
-    choice4 = State()
+    category=State()
+    level=State()
+    option_a= State()
+    option_b = State()
+    option_c = State()
+    option_d = State()
     answer = State()
 
 

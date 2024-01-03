@@ -57,7 +57,7 @@ async def UserForm_photo(message: Message, state:FSMContext):
         users = await create_user(int(message.chat.id), name=data['name'],phone_number=data['phone_number'],photo_id=data['photo_id'] ,date=datetime.now(),is_admin=0)
         print("done")
         await message.answer("You have been successfully register👏")
-        await message.answer("Now you are allowed to check the following services")
+        await message.answer("Now you are allowed to check the following services",reply_markup=keyboards.after_register_inline_keyboard)
         await message.answer("/get_all_users   -> View the list of Registered User")
 
 

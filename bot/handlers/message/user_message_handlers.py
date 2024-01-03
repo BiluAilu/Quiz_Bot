@@ -55,15 +55,15 @@ async def get_by_id(message: types.Message):
     except:
         await message.answer("Some error occurred")
 
-@user_router.message()
-async def retrive_user_by_id(message: types.Message):
-    try:
-        print("searching user...")
-        user = await get_user_by_id(int(message.text))
-        print("searching complete...")
-        await message.answer(f"{user}")
-    except Exception as e:
-        await message.answer(f"Some error occurred {e}")
+# @user_router.message()
+# async def retrive_user_by_id(message: types.Message):
+#     try:
+#         print("searching user...")
+#         user = await get_user_by_id(int(message.text))
+#         print("searching complete...")
+#         await message.answer(f"{user}")
+#     except Exception as e:
+#         await message.answer(f"Some error occurred {e}")
 
 
 # Same way you can update and delete users

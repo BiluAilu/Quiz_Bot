@@ -7,7 +7,7 @@ from bot.handlers.message.message_handlers import message_router
 from bot.handlers.message.user_message_handlers import user_router
 from bot.handlers.registration.user_registration_handler import user_registration_router 
 # from bot.handlers.registration.quiz_registration_handler import question_registration_router 
-# from bot.callbacks.callback import callback_router
+from bot.callbacks.callback import callback_router
 
 
 def register_routers(dp: Dispatcher) -> None:
@@ -21,7 +21,7 @@ def register_routers(dp: Dispatcher) -> None:
 
 
     # callback routers
-    # dp.include_router(callback_router)
+    dp.include_router(callback_router)
 
 
 

@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 
-from ..loader import collection
+from database.services.loader import collection
 from datetime import datetime
-from typing import
+from typing import List
 
 class Question(BaseModel):
     _id: int
@@ -10,7 +10,7 @@ class Question(BaseModel):
     choices: List[str]
     answer:str
     user_id: str
-    status: int
+    status: str
     category:str
     level:str
     date: datetime
