@@ -1,6 +1,6 @@
 from typing import List
 
-categories=["Programming","Networking","Other"]
+categories=["Programming","Networking","Health","Sport","Physics","Other"]
 levels=["easy","medium","hard"]
 
 

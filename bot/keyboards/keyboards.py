@@ -1,6 +1,7 @@
 
 from aiogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, KeyboardButton, InlineKeyboardButton
 from typing import List
+from utils import constants
 
 
 register_reply_keyboard = ReplyKeyboardMarkup(
@@ -30,14 +31,39 @@ after_register_inline_keyboard = InlineKeyboardMarkup(
 
 
 # inline keyboard with callback
-choice_inline_keyboard = InlineKeyboardMarkup(
+categories_inline_keyboard = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text="A.", callback_data="a"),
-            InlineKeyboardButton(text="B.", callback_data="b"),
-            InlineKeyboardButton(text="C.", callback_data="c"),
-            InlineKeyboardButton(text="D.", callback_data="d"),
+            
+            InlineKeyboardButton(text="Programming", callback_data="category_Programming") ,
+            InlineKeyboardButton(text="Networking", callback_data="Networking"),
+         
+        ],
+        [
+            
+            InlineKeyboardButton(text="Health", callback_data="category_Health") ,
+            InlineKeyboardButton(text="Sport", callback_data="category_Sport"),
+         
+        ],
+      
+        [
+            
+            InlineKeyboardButton(text="Physics", callback_data="category_Physics") ,
+            InlineKeyboardButton(text="Other", callback_data="category_Other"),
+         
         ]
+    ]
+)
+level_inline_keyboard = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            
+            InlineKeyboardButton(text="Easy", callback_data="level_easy") ,
+            InlineKeyboardButton(text="Medium", callback_data="level_medium"),
+            InlineKeyboardButton(text="Hard", callback_data="level_hard"),
+         
+        ]
+
     ]
 )
 
