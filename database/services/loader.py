@@ -1,7 +1,7 @@
 from aiogram import Bot, Dispatcher
 import motor.motor_asyncio
 from aiogram.fsm.storage.memory import MemoryStorage
-
+import os
 from dotenv import load_dotenv
 load_dotenv()
 
