@@ -106,7 +106,7 @@ async def process_callback_respond_to_create_quiz(message: types.Message, state:
         print(data)
         print("Adding question...")
         admin=await is_admin(int(message.chat.id))
-        question = await create_question(title=data['title'],category=data['category'],level=data['level'], choices=[data['option_a'],data['option_b'],data['option_c'],data['option_d']],answer=data['answer'], status=  "approved" if (admin) else "requested" ,user_id=  str(message.chat.id))
+        question = await create_question(title=data['title'],category=data['category'],level=data['level'], choices=[data['option_a'],data['option_b'],data['option_c'],data['option_d']],answer=data['answer'], status=  "approved" if (admin) else "requested" ,user_id=  message.chat.id)
         print("done")
         await message.answer("You have been successfully created a question👏")
         if(not admin):
