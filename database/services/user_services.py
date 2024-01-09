@@ -1,5 +1,6 @@
 from ..models.user_model import User, users_collection
-
+from bson import ObjectId
+from ..models.question_model import Question, questions_collection
 
 async def get_users() -> list[User]:
     users = users_collection.find()
@@ -23,3 +24,7 @@ async def update_user(id: int, **kwargs) -> User:
 async def is_admin(id:int)->bool:
     user = await users_collection.find_one({'_id': id})
     return user['is_admin'] == 1
+
+async def get_contributor_questions(id:int):
+    questions = await questions_collection.find({"user_id":id})
+    return [Question(**q) async for q in questions]
