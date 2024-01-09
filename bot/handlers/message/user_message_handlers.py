@@ -25,7 +25,7 @@ async def all_users(message: types.Message):
 
             
         else:
-            await message.answer("First you have to registered 🙏😅", reply_markup=keyboards.register_reply_keyboard)
+            await message.answer("First you have to be registered 🙏😅", reply_markup=keyboards.register_reply_keyboard)
         # await message.answer(f"{users}")
     except Exception as e:
         await message.answer(f"Some error occurred: {e}")

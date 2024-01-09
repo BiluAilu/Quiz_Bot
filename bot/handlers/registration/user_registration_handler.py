@@ -9,7 +9,7 @@ from aiogram.filters import Command
 from datetime import datetime
 from ...keyboards import keyboards
 from utils.state import UserForm
-from database.services.user_services import  create_user
+from database.services.user_services import  get_user_by_id, create_user
 
 user_registration_router = Router()
 
@@ -19,15 +19,22 @@ async def name_UserForm(message: Message, state: FSMContext):
     print(message.text)
     
     try:
-        await message.answer("Here you will be providing your required inUserFormation in order to be registered 🙂")
-        await state.set_state(UserForm.name)
-        await message.answer("Enter Your Name : ")
-    except:
-        await message.answer("Some error occurred")
+        existing_user = await get_user_by_id(int(message.chat.id))
+        if existing_user:
+            await message.answer("You Have Already registered, you can just use the following services",reply_markup=keyboards.after_register_inline_keyboard)
+        else:
+            
+
+            await message.answer("Here you will be providing your required inUserFormation in order to be registered 🙂")
+            await state.set_state(UserForm.name)
+            await message.answer("Enter Your Name : ")
+    except   Exception as e:
+        await message.answer(f"Some error occurred {e}")
 
 
 @user_registration_router.message(UserForm.name)
 async def photo_UserForm(message: Message, state:FSMContext):
+    print("I am after name registe")
     try:
         name = message.text.strip()  # Remove leading and trailing whitespaces
         if not name:
@@ -78,10 +85,10 @@ async def UserForm_finish(message: Message, state:FSMContext):
         print("Adding user...")
         users = await create_user(int(message.chat.id), name=data['name'],phone_number=data['phone_number'],photo_id=data['photo_id'] ,date=datetime.now(),is_admin=0)
         print("done")
-        await message.answer("You have been successfully register👏")
+        await state.clear()
+        await message.answer("You have been successfully register👏",reply_markup=keyboards.services_reply_keyboard)
         await message.answer("Now you are allowed to check the following services",reply_markup=keyboards.after_register_inline_keyboard)
         
-        await state.clear()
 
 
     except ValueError as ve:

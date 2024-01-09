@@ -14,11 +14,11 @@ from bot.callbacks.callback import callback_router
 def register_routers(dp: Dispatcher) -> None:
     """Registers routers"""
 
-    dp.include_router(message_router)
     dp.include_router(user_registration_router)
     dp.include_router(question_registration_router)
     dp.include_router(user_router)
     dp.include_router(quiz_taking_router)
+    dp.include_router(message_router)
 
 
 

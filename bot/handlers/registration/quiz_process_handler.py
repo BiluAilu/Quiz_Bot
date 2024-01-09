@@ -22,7 +22,7 @@ async def category_form(callback_query: types.CallbackQuery, state: FSMContext):
     try:
         await state.clear()
         await state.set_state(QuizForm.category)
-        await callback_query.message.answer("Let's Start Your fist by Picking Your",reply_markup=keyboards.categories_inline_keyboard)
+        await callback_query.message.answer("Let's Start Your fist by choosing Quiz questions Category ",reply_markup=keyboards.categories_inline_keyboard)
     except Exception as e:
         print(e)
         callback_query.message.answer(f"{e}")

@@ -9,7 +9,7 @@ class Question(BaseModel):
     title: str
     choices: List[str]
     answer:str
-    user_id: str
+    user_id: int
     status: str
     category:str
     level:str
