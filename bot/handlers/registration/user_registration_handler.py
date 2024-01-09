@@ -83,11 +83,11 @@ async def UserForm_finish(message: Message, state:FSMContext):
 
 
         print("Adding user...")
-        users = await create_user(int(message.chat.id), name=data['name'],phone_number=data['phone_number'],photo_id=data['photo_id'] ,date=datetime.now(),is_admin=0)
+        users = await create_user(int(message.chat.id), name=data['name'],phone_number=data['phone_number'],photo_id=data['photo_id'] ,date=datetime.now(),is_admin=0,status=1)
         print("done")
         await state.clear()
         await message.answer("You have been successfully register👏",reply_markup=keyboards.services_reply_keyboard)
-        await message.answer("Now you are allowed to check the following services",reply_markup=keyboards.after_register_inline_keyboard)
+        await message.answer("Check the following services",reply_markup=keyboards.services_reply_keyboard)
         
 
 

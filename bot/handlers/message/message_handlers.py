@@ -5,8 +5,8 @@ from aiogram.fsm.context import FSMContext
 from utils.state import UserForm,QuizForm
 # from ..keyboards import keyboard
 from ...keyboards import keyboards
-from database.services.user_services import get_users, get_user_by_id, create_user,is_admin
-from database.services.user_services import get_users, get_user_by_id, create_user
+from database.services.user_services import get_users, get_user_by_id, create_user,is_admin,get_contributor_questions
+
 
 message_router = Router()
 
@@ -18,7 +18,7 @@ async def start_handler(message: types.Message):
 
         existing_user = await get_user_by_id(int(message.chat.id))
         if existing_user:
-            await message.answer("Now you are allowed to check the following services",reply_markup=keyboards.after_register_inline_keyboard)
+            await message.answer("Check the following services",reply_markup=keyboards.services_reply_keyboard)
 
             admin=await is_admin(int(message.chat.id))
             # if admin:
@@ -62,11 +62,24 @@ async def check_message(message: types.Message,state: FSMContext) -> None:
         await message.answer(f"Let's create a question for a quiz")
         try:
             await state.set_state(QuestionForm.category)
-            await callback_query.message.answer("Select Category : ")
+            await message.answer("Select Category : ")
         except Exception as e:
             print(e)
-            await callback_query.message.answer(f"{e}")
+            await message.answer(f"{e}")
 
-
+    elif message.text=="💪 My Contribution":
+        try:
+            questions=await get_contributor_questions(int(message.from_user.id))
+            if questions:
+                for question in questions:
+                    await message.answer(f"Question= {question.title}\nChoices\nA.  {question.choices[0]}\tB.  {question.choices[1]}\nChoices\nC.  {question.choices[2]}\tD.  {question.choices[3]}\nAnswer= '{question.answer}'\nCategory= {question.category}\tLevel= {question.level}\n Status= #{question.status}")
+            else:
+                await message.answer("You haven't contribute by any question yet😢",reply_markup=keyboards.services_reply_keyboard)
+            
+        except Exception as e:
+            print(e)
+            await message.answer(f"{e}")   
+        
+        
     else:
         await message.answer("Unknown command")
