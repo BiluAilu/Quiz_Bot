@@ -21,7 +21,7 @@ services_reply_keyboard = ReplyKeyboardMarkup(
         [
             KeyboardButton(text="📃 Start Quiz")],
         [
-            KeyboardButton(text="👏 Contribute by Question")
+            KeyboardButton(text="👏 Contribute new Question")
         ],
         [
             KeyboardButton(text="💪 My Contribution")

@@ -4,7 +4,7 @@ from ..models.question_model import Question, questions_collection
 from typing import List
 async def get_questions(category:str,level:str):
     # Define your query parameters
-    query_params = {"category":category,"level":level}
+    query_params = {"category":category,"level":level,"status":"approved"}
 
     # Perform a query with parameters, random sample, and limit
     pipeline = [
