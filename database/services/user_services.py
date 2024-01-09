@@ -14,7 +14,6 @@ async def get_user_by_id(id: int) -> User or None:
     return User(**user) if user else None
 async def is_blocked(id: int) -> User or None:
     user = await users_collection.find_one({'_id': id})
-    print(user)
     return 0 if user['status'] else 1
     # return User(**user) if user else None
 
