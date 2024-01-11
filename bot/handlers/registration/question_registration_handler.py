@@ -4,7 +4,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from aiogram.types import ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
-
+from datetime import datetime
 from database.services.question_services import get_questions,create_question
 from database.services.user_services import is_admin
 
@@ -118,7 +118,7 @@ async def process_callback_respond_to_create_quiz(message: types.Message, state:
         print(data)
         print("Adding question...")
         admin=await is_admin(int(message.chat.id))
-        question = await create_question(title=data['title'],category=data['category'],level=data['level'], choices=[data['option_a'],data['option_b'],data['option_c'],data['option_d']],answer=data['answer'], status=  "approved" if (admin) else "requested" ,user_id=  message.chat.id)
+        question = await create_question(title=data['title'],category=data['category'],level=data['level'], choices=[data['option_a'],data['option_b'],data['option_c'],data['option_d']],answer=data['answer'], status=  "approved" if (admin) else "requested" ,user_id=  message.chat.id,date=datetime.now())
         print("done")
         if(not admin):
             await message.answer("🙌 Thank you for your contribution! 🌟 You've just added a question to our quiz bank. Your dedication to enriching the quiz experience is truly appreciated. 🧠✨ Our team will review and approve your question shortly. Once accepted, it'll become part of the challenge for fellow quizzers! Stay tuned and keep the questions coming! 🚀 #QuizContributor")

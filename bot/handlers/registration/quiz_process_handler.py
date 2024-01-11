@@ -19,13 +19,17 @@ score=0
 @quiz_taking_router.callback_query(lambda c: c.data == "start_quiz")
 async def category_form(callback_query: types.CallbackQuery, state: FSMContext):
     
-    try:
-        await state.clear()
-        await state.set_state(QuizForm.category)
-        await callback_query.message.answer("Let's Start Your fist by Picking Your",reply_markup=keyboards.categories_inline_keyboard)
-    except Exception as e:
-        print(e)
-        callback_query.message.answer(f"{e}")
+    if is_blocked(message.chat.id):
+        await massage.answer("🚫 Apologies, but it seems that your access to the bot has been temporarily restricted. If you believe this is an error or have questions regarding the restriction, please reach out to our support team at [sbsena@gmail.com]. We appreciate your understanding and cooperation. Thank you. 🤖 #BotAccess")
+    else:
+
+        try:
+            await state.clear()
+            await state.set_state(QuizForm.category)
+            await callback_query.message.answer("Let's Start Your fist by choosing Quiz questions Category ",reply_markup=keyboards.categories_inline_keyboard)
+        except Exception as e:
+            print(e)
+            callback_query.message.answer(f"{e}")
         
         
 @quiz_taking_router.callback_query(lambda c: c.data.startswith("category"))

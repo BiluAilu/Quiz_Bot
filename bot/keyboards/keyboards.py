@@ -7,7 +7,24 @@ from utils import constants
 register_reply_keyboard = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text="/Register")
+            KeyboardButton(text="👋 Register!")
+        ],
+     
+    ],
+    resize_keyboard=True,
+    one_time_keyboard=True,
+    input_field_placeholder="Register",
+    selective=True
+)
+services_reply_keyboard = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text="📃 Start Quiz")],
+        [
+            KeyboardButton(text="👏 Contribute new Question")
+        ],
+        [
+            KeyboardButton(text="💪 My Contribution")
         ],
      
     ],
