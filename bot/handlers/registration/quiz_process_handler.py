@@ -20,7 +20,7 @@ score=0
 async def category_form(callback_query: types.CallbackQuery, state: FSMContext):
     
     try:
-        state.clear()
+        await state.clear()
         await state.set_state(QuizForm.category)
         await callback_query.message.answer("Let's Start Your fist by Picking Your",reply_markup=keyboards.categories_inline_keyboard)
     except Exception as e:
@@ -116,7 +116,8 @@ async def process_callback_answer(callback_query: types.CallbackQuery, state: FS
         await callback_query.message.answer(f"Q5. {questions[4].title}", reply_markup=inline_keyboard)
     
     elif await state.get_state() == QuizQuestionsForm.question_5:
-        await callback_query.message.answer(f"""🎉 Congratulations! You've completed the quiz! 🌟\n\nYour Score: {score} out of 5\n\n{constants.customized_messages(score)}\n\nThank you for participating and embracing the challenge. Feel free to play again, explore new topics, or challenge your friends to beat your score! Keep the quest for knowledge alive! 🧠✨ #QuizMaster"""")
+        await state.clear()
+        await callback_query.message.answer(f"""🎉 Congratulations! You've completed the quiz! 🌟\n\nYour Score: {score} out of 5\n\n{constants.customized_messages(score)}\n\nThank you for participating and embracing the challenge. Feel free to play again, explore new topics, or challenge your friends to beat your score! Keep the quest for knowledge alive! 🧠✨ #QuizMaster""")
 
 
 
